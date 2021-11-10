@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useStopWatch from "../useStopWatch";
-import { useAnimationFrame } from "./useAnimationFrame";
+import { useAnimationFrame } from "../useAnimationFrame";
 
 export default function Home() {
   const {

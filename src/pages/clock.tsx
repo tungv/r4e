@@ -1,15 +1,89 @@
-import { CSSProperties, memo, useEffect, useRef, useState } from "react";
-import { useAnimationFrame } from "./useAnimationFrame";
+import React, { CSSProperties, memo, useEffect, useRef, useState } from "react";
+import OffClock from "../OffClock";
+import { useAnimationFrame } from "../useAnimationFrame";
+
+function blockJS() {
+  let i = 0;
+  if (
+    !confirm(
+      "Are you sure you want to block JavaScript with `while (++i < 10e9);` ?",
+    )
+  ) {
+    return;
+  }
+  console.time("block");
+  while (++i < 10e9);
+  console.timeEnd("block");
+}
 
 export default function ClockPage() {
   return (
     <div>
-      <AnalogClock />
+      <button onClick={blockJS}>block</button>
+
+      <div className="clocks">
+        <div>
+          <h1>animation frame + rerender css var</h1>
+          <ClockWithAnimationFrame />
+        </div>
+        <div>
+          <h1>animation frame + setProperty</h1>
+          <ClockWithRefAndSetProperty />
+        </div>
+        <div>
+          <h1>Off-main-thread WebAnimation API</h1>
+          <OffClock />
+        </div>
+      </div>
+
+      <style jsx>{`
+        .clocks {
+          display: flex;
+          flex-direction: row;
+          gap: 1rem;
+        }
+
+        .clock div {
+        }
+      `}</style>
     </div>
   );
 }
 
-function AnalogClock() {
+function ClockWithAnimationFrame() {
+  useAnimationFrame();
+
+  const time = new Date(Date.now());
+
+  const ms = time.getMilliseconds();
+  const ss = time.getSeconds() + ms / 1000;
+  const mm = time.getMinutes();
+  const hh = time.getHours();
+
+  return (
+    <div
+      className="clock"
+      style={
+        {
+          "--hour": hh,
+          "--minute": mm,
+          "--second": ss,
+        } as CSSProperties
+      }
+    >
+      <ClockFace />
+      <style jsx>{`
+        .clock {
+          width: 400px;
+          height: 400px;
+          position: relative;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function ClockWithRefAndSetProperty() {
   // useAnimationFrame();
 
   const clockRef = useRef<HTMLDivElement>();
@@ -18,17 +92,17 @@ function AnalogClock() {
     function repaint() {
       const time = new Date(Date.now());
 
-      const hh = time.getHours();
-      const mm = time.getMinutes();
-      const ss = time.getSeconds();
       const ms = time.getMilliseconds();
+      const ss = time.getSeconds() + ms / 1000;
+      const mm = time.getMinutes();
+      const hh = time.getHours();
 
       if (clockRef.current) {
         requestAnimationFrame(repaint);
 
         clockRef.current.style.setProperty("--hour", String(hh));
         clockRef.current.style.setProperty("--minute", String(mm));
-        clockRef.current.style.setProperty("--second", String(ss + ms / 1000));
+        clockRef.current.style.setProperty("--second", String(ss));
       }
     }
 
@@ -36,17 +110,7 @@ function AnalogClock() {
   }, []);
 
   return (
-    <div
-      className="clock"
-      ref={clockRef}
-      // style={
-      //   {
-      //     "--hour": hh,
-      //     "--minute": mm,
-      //     "--second": ss + ms / 1000,
-      //   } as CSSProperties
-      // }
-    >
+    <div className="clock" ref={clockRef}>
       <ClockFace />
       <style jsx>{`
         .clock {
