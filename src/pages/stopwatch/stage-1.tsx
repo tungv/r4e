@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
+import StopWatchLesson from "../../compoment/Apps/StopWatchApp";
 
 export default function StopWatchAppStep1() {
   const [hasStarted, setHasStarted] = useState(false);
@@ -23,19 +25,18 @@ export default function StopWatchAppStep1() {
   }
 
   return (
-    <main>
+    <StopWatchLesson srcFilePath="pages/stopwatch/1.tsx">
       {!hasStarted && (
         <section>
           <h4>Initial</h4>
           <div className="duration">
             <span>{`00:00:00.000`}</span>
           </div>
-          <footer>
+          <footer className="flex flex-row gap-1">
             <button onClick={start}>start</button>
           </footer>
         </section>
       )}
-
       {hasStarted && (
         <section>
           {!isPausing && (
@@ -44,7 +45,7 @@ export default function StopWatchAppStep1() {
               <div className="duration">
                 <span>01:23:45.678</span>
               </div>
-              <footer>
+              <footer className="flex flex-row gap-1">
                 <button onClick={stop}>stop</button>
               </footer>
             </>
@@ -55,7 +56,7 @@ export default function StopWatchAppStep1() {
               <div className="duration">
                 <span>01:23:45.678</span>
               </div>
-              <footer>
+              <footer className="flex flex-row gap-1">
                 <button onClick={resume}>resume</button>
                 <button onClick={reset}>reset</button>
               </footer>
@@ -63,7 +64,6 @@ export default function StopWatchAppStep1() {
           )}
         </section>
       )}
-
       <style jsx>{`
         main {
           width: 100vw;
@@ -77,6 +77,6 @@ export default function StopWatchAppStep1() {
           border-radius: 8px;
         }
       `}</style>
-    </main>
+    </StopWatchLesson>
   );
 }

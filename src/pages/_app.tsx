@@ -2,43 +2,23 @@ import "tailwindcss/tailwind.css";
 
 export default function ReactForEnterpriseCourse({ Component, pageProps }) {
   return (
-    <div className="layout">
-      <main>
+    <div className="grid grid-rows-[1fr,72px] h-screen">
+      <div className="flex-1 relative">
         <Component {...pageProps} />
-      </main>
-      <footer>
+      </div>
+      <footer className="p-2 text-center">
         React for Enterprise course by{" "}
-        <a href="https://twitter.com/tung__vu">Tung Vu</a>
+        <a
+          className="text-blue-800 font-bold"
+          href="https://twitter.com/tung__vu"
+        >
+          Tung Vu
+        </a>
       </footer>
 
-      <style jsx>{`
-        .layout {
-          display: flex;
-          flex-direction: column;
-          height: 100vh;
-        }
-
-        main {
-          flex: 1;
-        }
-
-        footer {
-          padding: 1rem;
-          text-align: center;
-        }
-        a {
-          color: hsl(200, 100%, 50%);
-        }
-      `}</style>
-
       <style jsx global>{`
-        html,
         body {
-          height: 100%;
-          min-height: 100vh;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+          overscroll-behavior-y: none;
         }
       `}</style>
     </div>
