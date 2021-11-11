@@ -41,7 +41,9 @@ export default function StopWatchLesson(
 
       <div className="flex flex-row flex-1 max-h-full">
         <main className="flex-1 p-4">
-          <div className="sticky top-4">{props.children}</div>
+          <div className="sticky top-4 flex flex-col gap-8">
+            {props.children}
+          </div>
         </main>
         <aside className="flex-1">
           <SourceCode path={props.srcFilePath} />

@@ -1,3 +1,34 @@
-### Animated Duration
+# Animated Duration
 
-Let's think about our `<Duration />` component for a moment
+The benefit of seperating high-level component by state is that now we don't have to do
+anything to the `<StopWatchInitital />` component. It's basically static.
+
+Let's think about our `<Duration />` component for a moment.
+The duration that should be showing in running state is the
+duration that we have passed since the start of the stopwatch.
+That means we need to store the `startTime` so we can calculate the duration
+
+```
+  <Duration durationMs={Date.now() - startTime} />
+```
+
+However, reading `Date.now()` in render is not functional, it's an effect.
+
+> Talking about effects, there are a couple of specific types of effects.
+> There is a language called [Koka](https://koka-lang.github.io/koka/doc/book.html) (literally, effect in Japanese - 効果, こうか)
+> that was built with first-class effect in mind.
+>
+> `Date.now()` is considered an effect because it's `non deterministic`.
+
+For effects, we need to use the `useEffect` hook.
+
+```jsx
+function useNow() {
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const interval = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+  return now;
+}
+```
