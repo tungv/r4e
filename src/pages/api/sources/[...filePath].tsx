@@ -10,12 +10,12 @@ export default async function SourceCodeAPI(
     const githubPath = `https://raw.githubusercontent.com/tungv/r4e/main/src/${filePath.join(
       "/",
     )}`;
-    const response = await got(githubPath);
+    const response = await got(githubPath, { throwHttpErrors: false });
 
     const raw = response.body;
 
     res.setHeader("Content-Type", "text/plain");
-    res.status(200).send(raw);
+    res.status(response.statusCode).send(raw);
 
     return;
   }

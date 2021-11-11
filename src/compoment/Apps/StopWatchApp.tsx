@@ -7,7 +7,7 @@ export default function StopWatchLesson(
 ) {
   return (
     <div className="flex flex-row divide-x relative">
-      <aside className="flex flex-col w-max p-2">
+      <aside className="flex flex-col p-2">
         <h1 className="text-lg">Stop Watch</h1>
         <nav>
           <ol className="flex flex-col gap-1">
@@ -17,6 +17,9 @@ export default function StopWatchLesson(
             </li>
             <li>
               <Link href="/stopwatch/stage-2">Step 2</Link>
+              <p className="text-sm text-gray-600">
+                Break state into multiple components
+              </p>
             </li>
             <li>
               <Link href="/stopwatch/stage-3">Step 3</Link>
