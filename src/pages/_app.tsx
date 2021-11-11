@@ -1,3 +1,5 @@
+import "tailwindcss/tailwind.css";
+
 export default function ReactForEnterpriseCourse({ Component, pageProps }) {
   return (
     <div className="layout">
@@ -32,8 +34,6 @@ export default function ReactForEnterpriseCourse({ Component, pageProps }) {
       <style jsx global>{`
         html,
         body {
-          padding: 0;
-          margin: 0;
           height: 100%;
           min-height: 100vh;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
