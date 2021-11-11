@@ -25,7 +25,7 @@ export default function StopWatchAppStep1() {
   }
 
   return (
-    <StopWatchLesson srcFilePath="pages/stopwatch/1.tsx">
+    <StopWatchLesson srcFilePath="pages/stopwatch/stage-1.tsx">
       {!hasStarted && (
         <section>
           <h4>Initial</h4>
