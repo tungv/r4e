@@ -67,13 +67,14 @@ export default function StopWatchAppStep1() {
       <style jsx>{`
         main {
           width: 100vw;
+          margin: 64px auto;
         }
         section {
           margin: auto;
           width: 320px;
           padding: 16px;
-          border: 1px solid hsl(0 50% 50%);
-          border-radius: 4px;
+          border: 2px solid hsl(0 50% 50%);
+          border-radius: 8px;
         }
       `}</style>
     </main>
