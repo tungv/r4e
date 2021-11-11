@@ -1,5 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import Link from "next/link";
+import Head from "next/head";
 import SourceCode from "../../components/SourceCode";
 
 export default function StopWatchLesson(
@@ -7,6 +8,9 @@ export default function StopWatchLesson(
 ) {
   return (
     <div className="flex flex-row divide-x relative">
+      <Head>
+        <title>StopWatchApp - React for Enterprise by Tung Vu</title>
+      </Head>
       <aside className="flex flex-col p-2">
         <h1 className="text-lg">Stop Watch</h1>
         <nav>
@@ -29,6 +33,7 @@ export default function StopWatchLesson(
             </li>
             <li>
               <Link href="/stopwatch/4">Step 4</Link>
+              <p className="text-sm text-gray-600">Animate time</p>
             </li>
           </ol>
         </nav>
