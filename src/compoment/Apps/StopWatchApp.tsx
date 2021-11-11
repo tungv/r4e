@@ -12,20 +12,23 @@ export default function StopWatchLesson(
         <nav>
           <ol className="flex flex-col gap-1">
             <li>
-              <Link href="/stopwatch/stage-1">Step 1</Link>
+              <Link href="/stopwatch/1">Step 1</Link>
               <p className="text-sm text-gray-600">Branching by state</p>
             </li>
             <li>
-              <Link href="/stopwatch/stage-2">Step 2</Link>
+              <Link href="/stopwatch/2">Step 2</Link>
               <p className="text-sm text-gray-600">
                 Break state into multiple components
               </p>
             </li>
             <li>
-              <Link href="/stopwatch/stage-3">Step 3</Link>
+              <Link href="/stopwatch/3">Step 3</Link>
+              <p className="text-sm text-gray-600">
+                Extract common parts into a component
+              </p>
             </li>
             <li>
-              <Link href="/stopwatch/stage-4">Step 4</Link>
+              <Link href="/stopwatch/4">Step 4</Link>
             </li>
           </ol>
         </nav>

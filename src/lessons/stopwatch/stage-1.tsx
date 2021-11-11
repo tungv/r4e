@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import StopWatchLesson from "../../compoment/Apps/StopWatchApp";
-
-export default function StopWatchAppStep1() {
+export default function StopWatchApp() {
   const [hasStarted, setHasStarted] = useState(false);
   const [isPausing, setIsPausing] = useState(false);
 
@@ -25,7 +23,7 @@ export default function StopWatchAppStep1() {
   }
 
   return (
-    <StopWatchLesson srcFilePath="pages/stopwatch/stage-1.tsx">
+    <div>
       {!hasStarted && (
         <section>
           <h4>Initial</h4>
@@ -77,6 +75,6 @@ export default function StopWatchAppStep1() {
           border-radius: 8px;
         }
       `}</style>
-    </StopWatchLesson>
+    </div>
   );
 }

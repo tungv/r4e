@@ -1,6 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import StopWatchLesson from "../../compoment/Apps/StopWatchApp";
+export default function StopWatchApp() {
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isPausing, setIsPausing] = useState(false);
+
+  function start() {
+    setHasStarted(true);
+    setIsPausing(false);
+  }
+
+  function stop() {
+    setIsPausing(true);
+  }
+
+  function resume() {
+    setIsPausing(false);
+  }
+
+  function reset() {
+    setHasStarted(false);
+    setIsPausing(false);
+  }
+
+  return (
+    <div>
+      {!hasStarted && <StopWatchInitial requestStart={start} />}
+      {hasStarted && !isPausing && <StopWatchRunning requestStop={stop} />}
+      {hasStarted && isPausing && (
+        <StopWatchingStopped requestReset={reset} requestResume={resume} />
+      )}
+    </div>
+  );
+}
 
 function StopWatchInitial({ requestStart }: { requestStart: () => void }) {
   return (
@@ -78,38 +109,5 @@ function StopWatchingStopped({
         }
       `}</style>
     </section>
-  );
-}
-
-export default function StopWatchApp() {
-  const [hasStarted, setHasStarted] = useState(false);
-  const [isPausing, setIsPausing] = useState(false);
-
-  function start() {
-    setHasStarted(true);
-    setIsPausing(false);
-  }
-
-  function stop() {
-    setIsPausing(true);
-  }
-
-  function resume() {
-    setIsPausing(false);
-  }
-
-  function reset() {
-    setHasStarted(false);
-    setIsPausing(false);
-  }
-
-  return (
-    <StopWatchLesson srcFilePath="pages/stopwatch/stage-2.tsx">
-      {!hasStarted && <StopWatchInitial requestStart={start} />}
-      {hasStarted && !isPausing && <StopWatchRunning requestStop={stop} />}
-      {hasStarted && isPausing && (
-        <StopWatchingStopped requestReset={reset} requestResume={resume} />
-      )}
-    </StopWatchLesson>
   );
 }
