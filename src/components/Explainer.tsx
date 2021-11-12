@@ -1,5 +1,6 @@
 import React from "react";
 import { MDXRemote } from "next-mdx-remote";
+import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import dracula from "react-syntax-highlighter/dist/cjs/styles/prism/dracula";
 
@@ -40,5 +41,9 @@ const components = {
       className="border-l-4 border-purple-800 bg-purple-200 pl-4 p-2 mb-4"
       {...props}
     />
+  ),
+  img: (props) => (
+    // height and width are part of the props, so they get automatically passed here with {...props}
+    <Image {...props} layout="responsive" loading="lazy" />
   ),
 };
