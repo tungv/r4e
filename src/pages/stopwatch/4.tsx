@@ -34,6 +34,7 @@ const components = {
   inlineCode: (props) => (
     <code className={"bg-purple-100 py-px px-2 rounded"} {...props} />
   ),
+  pre: (props) => <pre className="mb-4 last:mb-0" {...props} />,
   code: ({ className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || "");
     return (

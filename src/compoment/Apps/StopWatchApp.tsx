@@ -33,7 +33,11 @@ export default function StopWatchLesson(
             </li>
             <li>
               <Link href="/stopwatch/4">Step 4</Link>
-              <p className="text-sm text-gray-600">Animate time</p>
+              <p className="text-sm text-gray-600">The clock is ticking</p>
+            </li>
+            <li>
+              <Link href="/stopwatch/5">Step 5</Link>
+              <p className="text-sm text-gray-600">Move faster</p>
             </li>
           </ol>
         </nav>

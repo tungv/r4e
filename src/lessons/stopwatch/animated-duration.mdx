@@ -1,12 +1,12 @@
 # Animated Duration
 
-The benefit of seperating high-level component by state is that now we don't have to do
+The benefit of seperating high-level components by state is that now we don't have to do
 anything to the `<StopWatchInitital />` component. It's basically static.
 
 Let's think about our `<Duration />` component for a moment.
 The duration that should be showing in running state is the
-duration that we have passed since the start of the stopwatch.
-That means we need to store the `startTime` so we can calculate the duration
+duration since the start of the stopwatch.
+Therefore we need to store the `startTime` to calculate that elapsed time.
 
 ```
   <Duration durationMs={Date.now() - startTime} />
@@ -15,12 +15,12 @@ That means we need to store the `startTime` so we can calculate the duration
 However, reading `Date.now()` in render is not functional, it's an effect.
 
 > Talking about effects, there are a couple of specific types of effects.
-> There is a language called [Koka](https://koka-lang.github.io/koka/doc/book.html) (literally, effect in Japanese - 効果, こうか)
+> In this language [Koka](https://koka-lang.github.io/koka/doc/book.html) (literally "effect" in Japanese - 効果, こうか)
 > that was built with first-class effect in mind.
 >
 > `Date.now()` is considered an effect because it's `non deterministic`.
 
-For effects, we need to use the `useEffect` hook.
+For effects, we need to use the `useEffect` hook. Consider something like this:
 
 ```jsx
 function useNow() {
@@ -31,4 +31,19 @@ function useNow() {
   }, []);
   return now;
 }
+
+function StopWatchRunning({ startTimeMs }) {
+  /* ... */
+  return (
+    <StopWatchLayout>
+      /* ... */
+      <Duration durationMs={useNow() - startTimeMs} />
+      /* ... */
+    </StopWatchLayout>
+  );
+}
 ```
+
+Try running the above widget and see what happens.
+The clock is refreshing too infrequently, at least more than 1 second every tick.
+For a precise stopwatch app like ours, we want to be display the milliseconds.
