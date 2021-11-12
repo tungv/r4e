@@ -7,7 +7,7 @@ import loadLessonMdx from "../../loadLessonMdx";
 
 export default function StopWatchAppStep1({ source }) {
   return (
-    <StopWatchLesson srcFilePath="lessons/stopwatch/StopWatchRunning.tsx">
+    <StopWatchLesson srcFilePath="lessons/stopwatch/StopWatchRunningWithVariableRefreshRate.tsx">
       <StopWatchApp />
       <Explainer source={source} />
     </StopWatchLesson>
