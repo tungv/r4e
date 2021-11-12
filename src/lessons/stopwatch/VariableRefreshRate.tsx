@@ -1,7 +1,7 @@
 import { useState } from "react";
 import StopWatchingStopped from "./StopWatchingStopped";
 import StopWatchInitial from "./StopWatchInitial";
-import StopWatchRunning from "./StopWatchRunning";
+import StopWatchRunningWithVariableRefreshRate from "./StopWatchRunningWithVariableRefreshRate";
 
 export default function StopWatchApp() {
   const [startTimeMs, setStartTimeMs] = useState(0);
@@ -31,7 +31,10 @@ export default function StopWatchApp() {
     <div>
       {!hasStarted && <StopWatchInitial requestStart={start} />}
       {hasStarted && !isPausing && (
-        <StopWatchRunning requestStop={stop} startTimeMs={startTimeMs} />
+        <StopWatchRunningWithVariableRefreshRate
+          requestStop={stop}
+          startTimeMs={startTimeMs}
+        />
       )}
       {hasStarted && isPausing && (
         <StopWatchingStopped requestReset={reset} requestResume={resume} />

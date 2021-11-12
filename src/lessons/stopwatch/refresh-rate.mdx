@@ -1,0 +1,18 @@
+# Refresh Rate
+
+In the previous example, we set the refresh rate to "about" 1 frame per second.
+That is too slow. In this step, we will examine how different refresh rates behave.
+
+Let's start the stopwatch above to see a slider to change the refresh rate.
+It starts at 1 frame per second (1Hz). You can change the refresh rate by dragging
+the slider to the left or right up to 1000Hz.
+
+Changing this slider will change the number of milliseconds in the `setInterval` call.
+You think the stopwatch will re-render at the set rate and the more frequent you set,
+the more processing power the browser will use?
+
+Not really!
+
+Let's use the Chrome Developer Tools to see how much processing power the browser uses.
+
+![Chrome Developer Tools](/figures/chrome-debugger-profiling.png)

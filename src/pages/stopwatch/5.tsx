@@ -1,13 +1,13 @@
 import React from "react";
 
 import StopWatchLesson from "../../compoment/Apps/StopWatchApp";
-import StopWatchApp from "../../lessons/stopwatch/StopWatchAppWithAnimatedDuration";
+import StopWatchApp from "../../lessons/stopwatch/VariableRefreshRate";
 import Explainer from "../../components/Explainer";
 import loadLessonMdx from "../../loadLessonMdx";
 
 export default function StopWatchAppStep1({ source }) {
   return (
-    <StopWatchLesson srcFilePath="lessons/stopwatch/StopWatchAppWithAnimatedDuration.tsx">
+    <StopWatchLesson srcFilePath="lessons/stopwatch/StopWatchRunning.tsx">
       <StopWatchApp />
       <Explainer source={source} />
     </StopWatchLesson>
@@ -15,6 +15,6 @@ export default function StopWatchAppStep1({ source }) {
 }
 
 export async function getStaticProps() {
-  const mdxSource = await loadLessonMdx("stopwatch", "animated-duration.mdx");
+  const mdxSource = await loadLessonMdx("stopwatch", "refresh-rate.mdx");
   return { props: { source: mdxSource } };
 }

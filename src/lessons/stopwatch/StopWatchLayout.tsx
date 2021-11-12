@@ -8,7 +8,7 @@ export default function StopWatchLayout(props: PropsWithChildren<{}>) {
       <style jsx>{`
         section {
           margin: auto;
-          width: 320px;
+          width: 400px;
           padding: 16px;
           border: 2px solid hsl(0 50% 50%);
           border-radius: 8px;
