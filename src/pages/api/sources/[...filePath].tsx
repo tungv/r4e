@@ -1,7 +1,6 @@
-import got from "got";
 import { NextApiRequest, NextApiResponse } from "next";
 import { readFile } from "fs/promises";
-import { resolve } from "path";
+import { join } from "path";
 
 export default async function SourceCodeAPI(
   req: NextApiRequest,
@@ -10,7 +9,7 @@ export default async function SourceCodeAPI(
   if (req.method === "GET") {
     const filePath = req.query.filePath as string[];
 
-    const absolutePath = resolve(process.cwd(), "src", filePath.join("/"));
+    const absolutePath = join(process.cwd(), "src", filePath.join("/"));
 
     try {
       const file = await readFile(absolutePath, "utf8");
