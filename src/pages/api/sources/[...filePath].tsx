@@ -1,5 +1,7 @@
 import got from "got";
 import { NextApiRequest, NextApiResponse } from "next";
+import { readFile } from "fs/promises";
+import { resolve } from "path";
 
 export default async function SourceCodeAPI(
   req: NextApiRequest,
@@ -7,15 +9,17 @@ export default async function SourceCodeAPI(
 ) {
   if (req.method === "GET") {
     const filePath = req.query.filePath as string[];
-    const githubPath = `https://raw.githubusercontent.com/tungv/r4e/main/src/${filePath.join(
-      "/",
-    )}`;
-    const response = await got(githubPath, { throwHttpErrors: false });
 
-    const raw = response.body;
+    const absolutePath = resolve(process.cwd(), "src", filePath.join("/"));
 
-    res.setHeader("Content-Type", "text/plain");
-    res.status(response.statusCode).send(raw);
+    try {
+      const file = await readFile(absolutePath, "utf8");
+
+      res.setHeader("Content-Type", "text/plain");
+      res.status(200).send(file);
+    } catch {
+      res.status(404).end();
+    }
 
     return;
   }

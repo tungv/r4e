@@ -16,3 +16,41 @@ Not really!
 Let's use the Chrome Developer Tools to see how much processing power the browser uses.
 
 ![Chrome Developer Tools](/figures/chrome-debugger-profiling.png)
+
+As you look the the profiler report, you can see there are 3 primary timers.
+
+1. **The yellow one**: Scripting - this is how much time the browser spends executing scripts.
+2. **The purple one**: Rendering - this is how much time the browser spends calculating where to put elements on the screen.
+3. **The green one**: Painting - this is how much time the browser spends actually rendering the pixels.
+
+I plotted the three timers above to see how they grow as you request more frames per second.
+The one on the left is on my M1 machine.
+The one on the right is simulated to be 6x slower on CPU performance.
+
+<div className="grid grid-cols-2 mb-2">
+  <div>
+
+![Fast CPU](/figures/refresh-rate-fast-cpu.png)
+
+  </div>
+
+  <div>
+
+![Slow CPU](/figures/refresh-rate-slow-cpu.png)
+
+  </div>
+
+</div>
+
+Surprisingly, the even when you request a higher refresh rate, the scripting time stops growing at about 250Hz,
+and the rendering/painting time stop growing at about 100Hz.
+
+That's due to the fact that my monitor can only refresh at 100Hz.
+My browser knows it and decides that it's waistful to render and paint more frequently than the monitor can refresh.
+Most monitor will refresh at 60Hz, but some can go up to 144Hz. So your mileage may vary.
+
+However, for the scripting time. You will consistently get the maximum time spent at around 250Hz.
+This is because `setTimeout` and `setInterval` don't guarantee the callback to be called at the exact time you set it.
+They only put your task on the event loop. And the fastest turnaround time to check the loop is about 4ms.
+
+So the question is, how frequent should you render?

@@ -1,0 +1,27 @@
+# Animation Frame
+
+In the previous step, we know that it's only meaningful to refresh to clock as frequently as the screen is refreshed.
+But the question is how do we know when the screen can refresh.
+
+With `requestAnimationFrame`, at least we know when the browser wants to refresh.
+
+## `requestAnimationFrame(callback)`
+
+Just like `setTimeout`, `requestAnimationFrame` takes a callback function. That function will be called when the browser wants to refresh.
+However, the main difference is that `requestAnimationFrame` will be called at the beginning of the next frame, right before any rendering and painting.
+It makes sure that for every frame, the callback will be called at most once. Thus no waistful work will be done.
+
+<div className="grid grid-cols-2 mb-2">
+  <div>
+
+![setTimeout frame](/figures/frame-setTimeout.png)
+
+  </div>
+
+  <div>
+
+![request animation frame](/figures/frame-requestAnimationFrame.png)
+
+  </div>
+
+</div>

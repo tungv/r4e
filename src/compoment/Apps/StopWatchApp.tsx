@@ -39,6 +39,10 @@ export default function StopWatchLesson(
               <Link href="/stopwatch/5">Step 5</Link>
               <p className="text-sm text-gray-600">Move faster</p>
             </li>
+            <li>
+              <Link href="/stopwatch/6">Step 6</Link>
+              <p className="text-sm text-gray-600">The right frequency</p>
+            </li>
           </ol>
         </nav>
       </aside>

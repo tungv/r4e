@@ -1,6 +1,7 @@
 import React from "react";
 import useSWR from "swr";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import dracula from "react-syntax-highlighter/dist/cjs/styles/prism/dracula";
 
 export default function SourceCode({ path }: { path: string }) {
   const { data, error } = useSWR(`/api/sources/${path}`, (url) =>
@@ -12,7 +13,7 @@ export default function SourceCode({ path }: { path: string }) {
 
   return (
     <div className="h-full overflow-auto">
-      <SyntaxHighlighter language="typescript" showLineNumbers>
+      <SyntaxHighlighter language="tsx" showLineNumbers style={dracula}>
         {data}
       </SyntaxHighlighter>
     </div>
