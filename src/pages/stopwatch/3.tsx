@@ -2,10 +2,11 @@ import React from "react";
 
 import StopWatchLesson from "../../compoment/Apps/StopWatchApp";
 import StopWatchApp from "../../lessons/stopwatch/stage-3";
+import loadSourceCode from "../../loadSourceCode";
 
-export default function StopWatchPage() {
+export default function StopWatchPage({ sourceCode }) {
   return (
-    <StopWatchLesson srcFilePath="lessons/stopwatch/stage-3.tsx">
+    <StopWatchLesson src={sourceCode}>
       <StopWatchApp />
 
       <article className="flex flex-col gap-4 mt-20">
@@ -39,4 +40,11 @@ export default function StopWatchPage() {
       </article>
     </StopWatchLesson>
   );
+}
+
+export async function getStaticProps() {
+  const sourceCode = await loadSourceCode("lessons/stopwatch/stage-3.tsx");
+  return {
+    props: { sourceCode },
+  };
 }

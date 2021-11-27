@@ -4,7 +4,7 @@ import Head from "next/head";
 import SourceCode from "../../components/SourceCode";
 
 export default function StopWatchLesson(
-  props: PropsWithChildren<{ srcFilePath: string }>,
+  props: PropsWithChildren<{ src: string }>,
 ) {
   return (
     <div className="flex flex-row divide-x relative">
@@ -54,7 +54,7 @@ export default function StopWatchLesson(
           </div>
         </main>
         <aside className="flex-1">
-          <SourceCode path={props.srcFilePath} />
+          <SourceCode src={props.src} />
         </aside>
       </div>
     </div>
